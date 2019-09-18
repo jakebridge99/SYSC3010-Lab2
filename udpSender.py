@@ -3,14 +3,13 @@ import socket, sys, time
 
 host = sys.argv[1]
 textport = sys.argv[2]
+data = sys.argv[3]
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 port = int(textport)
 server_address = (host, port)
 
 while 1:
-    print ("Enter how many messages you'd like to send: ENTER to quit")
-    data = sys.stdin.readline().strip()
    
     if not len(data):
         break

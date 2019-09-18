@@ -20,7 +20,7 @@ while 1:
     message = "Message"
     counter = 1;
     while counter <= data_int:
-        sendMessage = message + counter
+        sendMessage = message + str(counter)
         counter = counter + 1
         s.sendto(sendMessage.encode('utf-8'), server_address)
 

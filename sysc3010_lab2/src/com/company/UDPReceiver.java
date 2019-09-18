@@ -19,7 +19,7 @@ public class UDPReceiver {
         {
             // Convert the argument to ensure that is it valid
             int port = Integer.parseInt( args[0] ) ;
-
+            InetAddress host = InetAddress.getByName( args[0] ) ;
             // Construct the socket
             DatagramSocket socket = new DatagramSocket( port ) ;
 
@@ -28,8 +28,13 @@ public class UDPReceiver {
                 System.out.println( "Receiving on port " + port ) ;
                 DatagramPacket packet = new DatagramPacket( new byte[PACKETSIZE], PACKETSIZE ) ;
                 socket.receive( packet ) ;
+                String temp = new String(packet.getData()).trim();
+                
+                System.out.println( packet.getAddress() + " " + packet.getPort() + ": " +  temp) ;
 
-                System.out.println( packet.getAddress() + " " + packet.getPort() + ": " + new String(packet.getData()).trim() ) ;
+                byte [] data = temp.getBytes() ;
+                DatagramPacket p = new DatagramPacket( data, data.length, host, port ) ;
+                socket.send( p ) ;
             }
         }
         catch( Exception e )
@@ -38,5 +43,7 @@ public class UDPReceiver {
         }
     }
 }
+
+
 
 

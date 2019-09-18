@@ -29,7 +29,7 @@ public class UDPReceiver {
                 DatagramPacket packet = new DatagramPacket( new byte[PACKETSIZE], PACKETSIZE ) ;
                 socket.receive( packet ) ;
                 String temp = new String(packet.getData()).trim();
-                
+
                 System.out.println( packet.getAddress() + " " + packet.getPort() + ": " +  temp) ;
 
                 byte [] data = temp.getBytes() ;
@@ -43,7 +43,5 @@ public class UDPReceiver {
         }
     }
 }
-
-
 
 

@@ -21,15 +21,22 @@ public class UDPSender {
      
 	         Scanner in;
 	         in = new Scanner (System.in);
-	         String message = null;
+	         int messageNum = null;
 	         while (true)
 	         {
-	        		 System.out.println("Enter text to be sent, ENTER to quit ");
-	        		 message = in.nextLine();
-	        		 if (message.length()==0) break;
-	        		 byte [] data = message.getBytes() ;
-	        		 DatagramPacket packet = new DatagramPacket( data, data.length, host, port ) ;
-	        		 socket.send( packet ) ;
+	        		 System.out.println("Enter number of time (e.g. 1, 2, 3, 4, 27123176, etc) to send a message(n), ENTER to quit ");
+	        		 messageNum = in.nextInt();
+			 	 if (messageNum == null) break;
+	        		 //if (message.length()==0) break;
+	        		 //byte [] data = message.getBytes() ;
+			 	 for(int i = 0; i < messageNum; i++){
+					String temp = "message" + i;
+					byte [] data = temp.getBytes() ;
+					DatagramPacket packet = new DatagramPacket( data, data.length, host, port ) ;
+	        		 	socket.send( packet ) ; 
+				 }
+			 	 messageNum == null;
+			         		 
 	         } 
 	         System.out.println ("Closing down");
 	      }

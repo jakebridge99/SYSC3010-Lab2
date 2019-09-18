@@ -20,7 +20,8 @@ public class UDPSender {
             InetAddress host = InetAddress.getByName( args[0] ) ;
             int port         = Integer.parseInt( args[1] ) ;
             socket = new DatagramSocket() ;
-
+            // Construct the socket
+            DatagramSocket socket_2 = new DatagramSocket( port ) ;
             Scanner in;
             in = new Scanner (System.in);
             int messageNum;
@@ -38,7 +39,36 @@ public class UDPSender {
                     socket.send( packet ) ;
                 }
 
+                try{
+                     
 
+                     
+
+                     for( ;; )
+                     {
+                        System.out.println( "Receiving on port " + port ) ;
+                        DatagramPacket packet = new DatagramPacket( new byte[PACKETSIZE], PACKETSIZE ) ;
+                        socket_2.receive( packet ) ;
+
+                        System.out.println( packet.getAddress() + " " + packet.getPort() + ": " + new String(packet.getData()).trim() ) ;
+                    }  
+                 }
+                 catch( Exception e )
+                 {
+                    System.out.println( e ) ;
+                 }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
             System.out.println ("Closing down");
         }

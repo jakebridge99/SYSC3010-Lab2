@@ -10,6 +10,8 @@ port = int(textport)
 server_address = (host, port)
 
 while 1:
+    if not len(data):
+        break
 #    s.sendall(data.encode('utf-8'))
     data_int = int(data)
     message = "Message"
@@ -21,6 +23,7 @@ while 1:
          print ("Waiting to receive on port %d : press Ctrl-C or Ctrl-Break to stop " % port)
          buf, address = s.recvfrom(port)
          print ("Received %s bytes from %s %s: " % (len(buf), address, buf ))
+    break
 
 s.shutdown(1)
 
